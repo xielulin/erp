@@ -3,3 +3,4 @@
 *.ipr
 erp.iws
 target/
+logPath_IS_UNDEFINED/
