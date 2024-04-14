@@ -30,12 +30,12 @@ public class UserController {
         return Result.ok(userService.getUserByTelAndPwd(param.getTel(),param.getPassword()));
 
     }
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public ModelAndView sayHello(@RequestBody @Validated TestParam param) throws BaseException {
         User user = userService.getUserByTelAndPwd(param.getTel(), param.getPassword());
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("Home.vue");
+        modelAndView.setViewName("/Home.vue");
         modelAndView.addObject("user", user);
         return modelAndView;
     }
