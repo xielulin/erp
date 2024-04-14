@@ -6,6 +6,7 @@ import com.erp.param.TestParam;
 import com.erp.response.Result;
 import com.erp.service.UserService;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
  * @create 2024-03-27 22:04
  * @desc
  **/
-@RestController
+@Controller
 @RequestMapping("/user")
 @Log
 public class UserController {
@@ -31,13 +32,8 @@ public class UserController {
 
     }
     @PostMapping("/login")
-    public ModelAndView sayHello(@RequestBody @Validated TestParam param) throws BaseException {
-        User user = userService.getUserByTelAndPwd(param.getTel(), param.getPassword());
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/Home.vue");
-        modelAndView.addObject("user", user);
-        return modelAndView;
+    public Result<User> login(@RequestBody @Validated TestParam param) throws BaseException {
+        return Result.ok(userService.getUserByTelAndPwd(param.getTel(),param.getPassword()));
     }
 
 
