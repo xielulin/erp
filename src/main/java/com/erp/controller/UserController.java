@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @create 2024-03-27 22:04
  * @desc
  **/
-@Controller
+@RestController
 @RequestMapping("/user")
 @Log
 public class UserController {
