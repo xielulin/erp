@@ -1,14 +1,19 @@
 package com.erp.service.Impl;
 
 import com.erp.bean.User;
+import com.erp.constants.Constant;
 import com.erp.dao.UserMapper;
 import com.erp.exception.BaseException;
 import com.erp.exception.EmBussinessError;
 import com.erp.service.UserService;
+import com.erp.utils.JwtUtil;
 import com.erp.utils.MD5;
+import com.erp.utils.RedisUtil;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xielulin
@@ -18,7 +23,9 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
+    @Resource
+    private RedisTemplate redisTemplate;
     @Override
     public User getUserByTelAndPwd(String tel, String pwd) throws BaseException {
         User user = userMapper.selectByTel(tel);
@@ -36,5 +43,20 @@ public class UserServiceImpl implements UserService {
             return user;
         }
 
+    }
+
+    @Override
+    public String login(String tel, String password) throws BaseException {
+        User user = getUserByTelAndPwd(tel, password);
+        String token = JwtUtil.getToken(user);
+        RedisUtil.redisUtil.set(Constant.RedisConstant.TOKEN_KEY +user.getId(),token);
+        RedisUtil.redisUtil.expire(Constant.RedisConstant.TOKEN_KEY +user.getId(),60, TimeUnit.MINUTES);
+        return token;
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
     }
 }

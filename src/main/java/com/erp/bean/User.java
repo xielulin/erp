@@ -1,7 +1,10 @@
 package com.erp.bean;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class User {
     /**
      *
@@ -233,4 +236,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
 }

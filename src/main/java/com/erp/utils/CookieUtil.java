@@ -1,15 +1,12 @@
-package com.qbzz.bot.utils;
+package com.erp.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@Slf4j
 public class CookieUtil {
-
-    private static final Logger logger = LoggerFactory.getLogger(CookieUtil.class);
 
 	/**
 	 * Cookie删除
@@ -19,8 +16,8 @@ public class CookieUtil {
 	 * @param key	需要删除的key
 	 * @return
 	 */
-	public static boolean rmCookie(HttpServletRequest request , 
-			HttpServletResponse reponse , String key) {
+	public static boolean rmCookie(HttpServletRequest request ,
+                                   HttpServletResponse reponse , String key) {
 		Cookie ck = null;
 		//当key或者request为空时，直接返回false
 		if("".equals(key) && key == null
@@ -68,13 +65,5 @@ public class CookieUtil {
 		}
 		return obj;
 	}
-	
-	
-	public static <T> T getUserInfo(HttpServletRequest request, Class<T> responseType){
-		Object value = getValue(request,"Authentication");
-        logger.info("Authentication值为，value:{}", value);
-		@SuppressWarnings("unchecked")
-		T  obj = (T)RedisUtil.get(value);
-		return obj;
-	}
+
 }

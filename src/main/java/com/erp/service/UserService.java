@@ -19,5 +19,22 @@ public interface UserService {
      */
     User getUserByTelAndPwd(String tel, String pwd) throws BaseException;
 
+    /**
+     * @description 登录
+     * @author xielulin
+     * @date 2024/4/15
+     * @param tel
+     * @param password
+     * @return com.erp.bean.User
+     */
+    String login(String tel, String password) throws BaseException;
 
+    /**
+     * @description 通过id获取用户
+     * @author xielulin
+     * @date 2024/4/15
+     * @param id
+     * @return com.erp.bean.User
+     */
+    User getUserById(Integer id);
 }

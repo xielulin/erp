@@ -1,17 +1,14 @@
-package com.qbzz.bot.configure;
+package com.erp.configration;
 
-import com.qbzz.bot.intercepors.H5Interceptor;
-import com.qbzz.bot.intercepors.LoginInterceptor;
-import com.qbzz.bot.intercepors.ReqBodyParamsFilter;
+
+import com.erp.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
 import org.springframework.web.filter.FormContentFilter;
 import org.springframework.web.servlet.config.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -19,14 +16,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Autowired
     LoginInterceptor loginInterceptor;
-    @Resource
-    H5Interceptor h5Interceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/api/1.0/**").addPathPatterns("/api/open/1.0/foreign/**")
-        .excludePathPatterns("/swagger-resources/**","swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-ui.html/**","/api/open/1.0/foreign/getToken");
-//        registry.addInterceptor(h5Interceptor).addPathPatterns("/api/open/1.0/html/**");
+        registry.addInterceptor(loginInterceptor)
+        .excludePathPatterns("/swagger-resources/**","swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-ui.html/**",
+                "/user/login");
     }
 
     @Override
@@ -68,24 +63,5 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.setUseTrailingSlashMatch(true);
     }
-    /**
-     * 处理请求参数为json字符串的过滤器
-     * @return
-     */
-   /* @Bean
-    public FilterRegistrationBean<ReqBodyParamsFilter> someFilterRegistration() {
-        FilterRegistrationBean<ReqBodyParamsFilter> registration = new FilterRegistrationBean<ReqBodyParamsFilter>();
-        registration.setFilter(reqBodyParamsFilter());
-        registration.addUrlPatterns("/api/open/1.0/html/*");
-        registration.setName("reqBodyParamsFilter");
-        return registration;
-    }
-    *//**
-     * request json body 过滤器
-     * @return
-     *//*
-    @Bean(name = "reqBodyParamsFilter")
-    public ReqBodyParamsFilter reqBodyParamsFilter() {
-        return new ReqBodyParamsFilter();
-    }*/
+
 }

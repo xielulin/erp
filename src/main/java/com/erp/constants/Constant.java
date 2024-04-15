@@ -57,6 +57,8 @@ public class Constant {
 
         public static final int DATABASE_15 = 15;
 
+        public static final String TOKEN_KEY = "Authentication:";
+
     }
 
     /**

@@ -27,13 +27,13 @@ public class UserController {
 
     @PostMapping("/getUser")
     public Result<User> getByTelAndPwd(@RequestBody @Validated TestParam param) throws BaseException {
-//        sender.sendConfirm(param.getMessage());
         return Result.ok(userService.getUserByTelAndPwd(param.getTel(),param.getPassword()));
 
     }
     @PostMapping("/login")
-    public Result<User> login(@RequestBody @Validated TestParam param) throws BaseException {
-        return Result.ok(userService.getUserByTelAndPwd(param.getTel(),param.getPassword()));
+    public Result<String> login(@RequestBody @Validated TestParam param) throws BaseException {
+        String userToken = userService.login(param.getTel(), param.getPassword());
+        return Result.ok(userToken);
     }
 
 
