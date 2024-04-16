@@ -46,9 +46,6 @@ public class Result<T> {
         return new Result<>(Constant.ResultConstant.SUCCESS, null, null);
     }
 
-//    public static <T> Result<T> ok(String message) {
-//        return new Result<>(Constant.ResultConstant.SUCCESS, null, message);
-//    }
 
     public static <T> Result<T> ok(T data, String desc) {
         return new Result<>(Constant.ResultConstant.SUCCESS, data, desc);

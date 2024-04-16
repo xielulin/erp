@@ -30,18 +30,18 @@ public class LoginInterceptor implements HandlerInterceptor {
         String token = (String) CookieUtil.getValue(request, "Authentication");
         log.info("获取到的token, token:{}", token);
         if(token ==null){
-            response.setStatus(302);
+            response.setStatus(401);
             log.warn("用户登录失效，请重新登录");
             return false;
         }
         User verify = JwtUtil.verify(token);
         if(verify == null){
             log.warn("未获取到用户信息");
-            response.setStatus(302);
+            response.setStatus(401);
             return false;
         }
         if(Objects.isNull(RedisUtil.redisUtil.get(Constant.RedisConstant.TOKEN_KEY + verify.getId()))){
-            response.setStatus(302);
+            response.setStatus(401);
             log.warn("用户登录失效，请重新登录");
             return false;
         }
@@ -50,7 +50,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         log.info("当前用户信息， user:{}", user);
         if(user == null) {
             log.warn("未获取到用户信息");
-            response.setStatus(302);
+            response.setStatus(401);
             return false;
         }
         //token续期60min
