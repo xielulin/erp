@@ -1,6 +1,8 @@
 package com.erp.service;
 
 import com.erp.bean.User;
+import com.erp.dto.LoginDto;
+import com.erp.dto.UserDto;
 import com.erp.exception.BaseException;
 
 /**
@@ -27,7 +29,7 @@ public interface UserService {
      * @param password
      * @return com.erp.bean.User
      */
-    String login(String tel, String password) throws BaseException;
+    LoginDto login(String tel, String password) throws BaseException;
 
     /**
      * @description 通过id获取用户
@@ -37,4 +39,6 @@ public interface UserService {
      * @return com.erp.bean.User
      */
     User getUserById(Integer id);
+
+    UserDto getUserDetailById(int id);
 }

@@ -1,14 +1,19 @@
 package com.erp.service.Impl;
 
+import com.erp.bean.Company;
 import com.erp.bean.User;
 import com.erp.constants.Constant;
+import com.erp.dao.CompanyMapper;
 import com.erp.dao.UserMapper;
+import com.erp.dto.LoginDto;
+import com.erp.dto.UserDto;
 import com.erp.exception.BaseException;
 import com.erp.exception.EmBussinessError;
 import com.erp.service.UserService;
 import com.erp.utils.JwtUtil;
 import com.erp.utils.MD5;
 import com.erp.utils.RedisUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
     @Resource
-    private RedisTemplate redisTemplate;
+    private CompanyMapper companyMapper;
     @Override
     public User getUserByTelAndPwd(String tel, String pwd) throws BaseException {
         User user = userMapper.selectByTel(tel);
@@ -46,12 +51,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(String tel, String password) throws BaseException {
+    public LoginDto login(String tel, String password) throws BaseException {
         User user = getUserByTelAndPwd(tel, password);
         String token = JwtUtil.getToken(user);
         RedisUtil.redisUtil.set(Constant.RedisConstant.TOKEN_KEY +user.getId(),token);
         RedisUtil.redisUtil.expire(Constant.RedisConstant.TOKEN_KEY +user.getId(),60, TimeUnit.MINUTES);
-        return token;
+        LoginDto loginDto = new LoginDto();
+        loginDto.setToken(token);
+        loginDto.setUserId(user.getId());
+        return loginDto;
     }
 
     @Override
@@ -59,4 +67,20 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectByPrimaryKey(id);
         return user;
     }
+
+    @Override
+    public UserDto getUserDetailById(int id) {
+        User user = getUserById(id);
+        if(user == null){
+            return null;
+        }
+        UserDto userDto = new UserDto();
+        Company company = companyMapper.selectByPrimaryKey(user.getComId());
+        if(company != null){
+            userDto.setComName(company.getComName());
+        }
+        BeanUtils.copyProperties(user,userDto);
+        return userDto;
+    }
+
 }
