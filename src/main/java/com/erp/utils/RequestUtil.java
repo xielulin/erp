@@ -6,7 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 @Slf4j
-public class CookieUtil {
+public class RequestUtil {
 
 	/**
 	 * Cookie删除
@@ -46,7 +46,7 @@ public class CookieUtil {
 	 * @param key  	  需要查询Cookie的Key
 	 * @return		 返回Cookie的Value
 	 */
-	public static String getValue(HttpServletRequest request , String key) {
+	public static String getCookieValue(HttpServletRequest request , String key) {
 		
 		String obj = null;
 		//当key或request为null时，直接返回null;
@@ -64,6 +64,21 @@ public class CookieUtil {
 			}
 		}
 		return obj;
+	}
+
+	public static String getHeaderValueByName(HttpServletRequest request , String key) {
+
+		//当key或request为null时，直接返回null;
+		if("".equals(key) || key == null
+				|| request == null) {
+			return null;
+		}
+		String value = request.getHeader("Authentication");
+		if(value == null) {
+			return null;
+		}
+
+		return value;
 	}
 
 }
