@@ -25,8 +25,7 @@
     </appender>
 
     <!-- 日志级别 -->
-    <logger name="com.qbzz.bot.mapper" level="DEBUG"/>
-    <logger name="org.springframework.data.mongodb.core" level="DEBUG"/>
+    <logger name="com.erp.dao" level="DEBUG"/>
     <root level="info">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="INFO"/>

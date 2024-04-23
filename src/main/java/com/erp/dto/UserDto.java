@@ -13,4 +13,5 @@ public class UserDto {
     private String name;
     private String comName;
     private String tel;
+    private String orderTel;
 }

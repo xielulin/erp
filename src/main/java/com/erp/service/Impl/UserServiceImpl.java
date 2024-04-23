@@ -9,6 +9,7 @@ import com.erp.dto.LoginDto;
 import com.erp.dto.UserDto;
 import com.erp.exception.BaseException;
 import com.erp.exception.EmBussinessError;
+import com.erp.param.EditUserParam;
 import com.erp.service.UserService;
 import com.erp.utils.JwtUtil;
 import com.erp.utils.MD5;
@@ -80,6 +81,19 @@ public class UserServiceImpl implements UserService {
             userDto.setComName(company.getComName());
         }
         BeanUtils.copyProperties(user,userDto);
+        return userDto;
+    }
+
+    @Override
+    public UserDto editUserDetail(EditUserParam param) {
+        User user = new User();
+        BeanUtils.copyProperties(param,user);
+        userMapper.updateByPrimaryKeySelective(user);
+        Company company = companyMapper.selectByPrimaryKey(user.getId());
+        company.setComName(param.getComName());
+        companyMapper.updateByPrimaryKey(company);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(param,userDto);
         return userDto;
     }
 

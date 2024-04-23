@@ -85,7 +85,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Result exceptionHandler(Exception e) {
         log.error("系统异常：{}", e);
-        return  Result.warn("系统异常:" + e.getMessage());
+        return  Result.warn("系统异常请联系管理员" );
     }
 
     /**

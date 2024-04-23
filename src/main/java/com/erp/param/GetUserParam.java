@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
  * @desc
  **/
 @Data
-public class TestParam {
+public class GetUserParam {
 
     @NotBlank(message = "电话号码不能为空")
     private String tel;

@@ -4,6 +4,7 @@ import com.erp.bean.User;
 import com.erp.dto.LoginDto;
 import com.erp.dto.UserDto;
 import com.erp.exception.BaseException;
+import com.erp.param.EditUserParam;
 
 /**
  * @author xielulin
@@ -41,4 +42,6 @@ public interface UserService {
     User getUserById(Integer id);
 
     UserDto getUserDetailById(int id);
+
+    UserDto editUserDetail(EditUserParam param);
 }

@@ -33,7 +33,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table  tableName="company" domainObjectName="Company" enableCountByExample="false"
+        <!--<table  tableName="company" domainObjectName="Company" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table  tableName="customer" domainObjectName="Customer" enableCountByExample="false"
@@ -44,8 +44,10 @@
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table  tableName="sku" domainObjectName="Sku" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table  tableName="user" domainObjectName="User" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
-
 
     </context>
 </generatorConfiguration>

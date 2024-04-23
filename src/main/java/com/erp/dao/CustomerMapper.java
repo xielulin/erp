@@ -2,6 +2,9 @@ package com.erp.dao;
 
 import com.erp.bean.Customer;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface CustomerMapper {
@@ -52,4 +55,6 @@ public interface CustomerMapper {
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
     int updateByPrimaryKey(Customer record);
+
+    List<Customer> selectByComIdAndUserName(@Param("comId") Integer comId,@Param("name") String name);
 }
