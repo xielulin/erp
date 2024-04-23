@@ -59,6 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
     public int addCustomer(SaveCustomerParam param) throws BaseException {
         Customer customer = new Customer();
         BeanUtils.copyProperties(param,customer);
+        customer.setIsDel(false);
         User user = userService.getUserById(param.getUserId());
         if(user == null){
             throw new BaseException(EmBussinessError.USER_NOT_EXIT);
