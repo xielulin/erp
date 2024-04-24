@@ -12,10 +12,9 @@ public enum EmBussinessError implements CommonError {
     LOGIN_FAIL_ERROR(20002, "手机号码或密码不正确"),
     USER_NOT_LOGIN(20003,"用户未登陆" ),
 
-    PULL_COMPANY_ERROR(30001,"公司信息拉取接口调用失败"),
 
-    //30000 订单错误码
-    STOCK_NOT_ENOUGH(30001, "商品库存不足"), ;
+    //30000 短信错误码
+    SEND_MESSAGE_ERROR(30001,"发送短信失败");
 
 
     private int errCode;

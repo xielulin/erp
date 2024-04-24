@@ -58,7 +58,11 @@ public class Constant {
         public static final int DATABASE_15 = 15;
 
         public static final String TOKEN_KEY = "Authentication:";
-
+        /**
+         * 验证码有效时间
+         */
+        public static final Integer VERIFICATION_CODE_ALIVE_TIME = 5;
+        public static final String VERIFICATION_CODE_KEY = "verificationCode:";
     }
 
     /**

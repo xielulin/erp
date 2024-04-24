@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: erp
+  profiles:
+    active: dev
+    include: message
+server:
+  servlet:
+    context-path: /erp

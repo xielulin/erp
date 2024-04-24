@@ -98,7 +98,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BaseException.class)
     public Result baseExceptionHandler(BaseException e) {
         log.error("系统异常：{}", e);
-        return  Result.warn("系统异常:" + e.getErrMsg());
+        return  Result.warn( e.getErrMsg());
     }
 
     @ExceptionHandler({HttpMessageNotReadableException.class})
