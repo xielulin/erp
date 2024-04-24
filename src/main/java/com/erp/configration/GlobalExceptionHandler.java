@@ -97,7 +97,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = BaseException.class)
     public Result baseExceptionHandler(BaseException e) {
-        log.error("系统异常：{}", e);
+        log.error("系统异常：{}", e.getErrMsg());
         return  Result.warn( e.getErrMsg());
     }
 

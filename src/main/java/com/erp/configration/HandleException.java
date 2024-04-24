@@ -1,3 +1,4 @@
+/*
 package com.erp.configration;
 
 import com.erp.exception.BaseException;
@@ -21,16 +22,18 @@ public class HandleException {
 
     }
 
-    /**
+    */
+/**
      * 全局异常捕获处理,保证所有接口返回正常的结果值
      *
      * @param e
      * @return
-     */
+     *//*
+
     @ResponseBody
     @ExceptionHandler(value = BaseException.class)
     public Result exceptionHandler(BaseException e) {
-        logger.error("系统异常1：{}", e);
+        logger.error("系统异常：{}", e);
         return  Result.warn("2", "系统异常:" + e.getMessage());
     }
 
@@ -55,3 +58,4 @@ public class HandleException {
         return Result.warn("2", "Resource not found! Message:" + e.getMessage());
     }
 }
+*/
