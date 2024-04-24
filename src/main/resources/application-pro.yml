@@ -25,6 +25,9 @@ spring:
 
 #短信
 message:
+  secret:
+    id:
+    key:
   sdk:
     app:
       id: 1400900640
