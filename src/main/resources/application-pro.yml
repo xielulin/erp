@@ -22,5 +22,15 @@ spring:
         max-wait: 30s
         max-idle: 100
         min-idle: 8
+
+#短信
+message:
+  sdk:
+    app:
+      id: 1400900640
+  template:
+    id: 585826
+  sign:
+    name: 开单宝网站
 log:
   path: /muuu/java/logs/erp/
