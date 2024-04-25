@@ -12,6 +12,7 @@ public enum EmBussinessError implements CommonError {
     LOGIN_FAIL_ERROR(20002, "手机号码或密码不正确"),
     USER_NOT_LOGIN(20003,"用户未登陆" ),
     AUTHORITY_ERROR(20004,"当前用户无此权限，请联系管理员开通"),
+    SKU_NOT_EXIST(20005,"商品不存在，请重试"),
 
     //30000 短信错误码
     SEND_MESSAGE_ERROR(30001,"发送短信失败");
