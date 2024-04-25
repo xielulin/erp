@@ -45,7 +45,7 @@
         <table  tableName="sku" domainObjectName="Sku" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table  tableName="user" domainObjectName="User" enableCountByExample="false"
+        <table  tableName="company" domainObjectName="Company" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
 

@@ -78,5 +78,18 @@ public class Constant {
         public static final byte LOCKED = 2;    //被锁定状态
         public static final byte DELETE = 3;    //删除状态
     }
+
+    /**
+     * @description 企业等级状态码
+     * @author xielulin
+     * @date 2018/12/28
+     */
+    public static final class CompanyLevelConstant{
+        /**
+         * @description 正常状态
+         **/
+        public static final byte NORMAL = 1;  //普通企业
+        public static final byte VIP = 2;    //vip企业
+    }
 }
 

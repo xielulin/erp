@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  *
  */
 @SpringBootApplication(scanBasePackages = {"com.erp"})
-@MapperScan("com.xll.erp.dao")
+@MapperScan("com.erp.dao")
 @EnableWebMvc
 public class App {
 
