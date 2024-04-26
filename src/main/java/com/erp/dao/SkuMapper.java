@@ -62,5 +62,5 @@ public interface SkuMapper {
      * @mbg.generated Thu Apr 25 21:03:01 CST 2024
      */
     int updateByPrimaryKey(Sku record);
-    List<Sku> selectByComIdAndUserName(@Param("comId") Integer comId, @Param("name") String name);
+    List<Sku> selectByComIdAndKeyword(@Param("comId") Integer comId, @Param("keyword") String keyword);
 }

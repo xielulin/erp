@@ -7,6 +7,8 @@ import com.erp.param.GetCustomerListParam;
 import com.erp.param.SaveCustomerParam;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author xielulin
  * @create 2024-04-22 15:24
@@ -57,4 +59,13 @@ public interface CustomerService {
      * @return int
      */
     int delCustomer(int id);
+
+    /**
+     * @description 根据userId获取所有客户
+     * @author xielulin
+     * @date 2024/4/26
+     * @param userId
+     * @return java.util.List<com.erp.bean.Customer>
+     */
+    List<Customer> getCustomerListByUserId(Integer userId);
 }

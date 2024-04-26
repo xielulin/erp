@@ -13,5 +13,5 @@ import javax.validation.constraints.NotNull;
 public class GetSkuListParam extends PageParam{
     @NotNull(message = "用户id不能为空")
     private Integer userId;
-    private String name;
+    private String keyword;
 }

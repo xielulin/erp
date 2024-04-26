@@ -36,7 +36,7 @@ public class SkuServiceImpl implements SkuService {
             return null;
         }
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
-        List<Sku> customers = skuMapper.selectByComIdAndUserName(user.getComId(),param.getName());
+        List<Sku> customers = skuMapper.selectByComIdAndKeyword(user.getComId(),param.getKeyword());
         PageInfo<Sku> pageInfo = new PageInfo<>(customers);
         return pageInfo;
     }

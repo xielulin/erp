@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author xielulin
@@ -30,6 +31,11 @@ public class CustomerController {
     @PostMapping("/getCustomerList")
     public Result<PageInfo<Customer>> getCustomerList(@RequestBody@Validated GetCustomerListParam param) throws BaseException {
         return Result.ok(customerService.getCustomerListByComIdAndName(param));
+    }
+
+    @GetMapping("/getList")
+    public Result<List<Customer>> getList(@RequestParam Integer userId)  {
+        return Result.ok(customerService.getCustomerListByUserId(userId));
     }
 
     @GetMapping("/getCustomer")

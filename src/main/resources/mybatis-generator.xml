@@ -45,9 +45,11 @@
         <table  tableName="sku" domainObjectName="Sku" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table  tableName="sku" domainObjectName="Sku" enableCountByExample="false"
+        <table  tableName="order_form" domainObjectName="OrderForm" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
-                enableSelectByExample="true" selectByExampleQueryId="false"></table>
+                enableSelectByExample="true" selectByExampleQueryId="false">
+            <columnOverride column="price" javaType="java.math.BigDecimal"/>
+        </table>
 
     </context>
 </generatorConfiguration>

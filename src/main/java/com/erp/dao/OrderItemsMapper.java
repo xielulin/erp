@@ -52,4 +52,13 @@ public interface OrderItemsMapper {
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
     int updateByPrimaryKey(OrderItems record);
+
+    /**
+     * @description 根据订单id删除订单商品明细
+     * @author xielulin
+     * @date 2024/4/26
+     * @param orderId
+     * @return int
+     */
+    int deleteByOrderId(Integer orderId);
 }

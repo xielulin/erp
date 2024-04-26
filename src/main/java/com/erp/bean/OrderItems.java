@@ -1,5 +1,7 @@
 package com.erp.bean;
 
+import java.math.BigDecimal;
+
 public class OrderItems {
     /**
      *
@@ -44,7 +46,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    private Long price;
+    private BigDecimal price;
 
     /**
      *
@@ -53,7 +55,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    private Long totalPrice;
+    private BigDecimal totalPrice;
 
     /**
      *
@@ -168,7 +170,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -180,7 +182,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -192,7 +194,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    public Long getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
@@ -204,7 +206,7 @@ public class OrderItems {
      *
      * @mbg.generated Wed Apr 17 19:56:18 CST 2024
      */
-    public void setTotalPrice(Long totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

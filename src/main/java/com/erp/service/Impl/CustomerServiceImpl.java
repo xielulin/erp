@@ -75,4 +75,14 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setIsDel(true);
         return customerMapper.updateByPrimaryKeySelective(customer);
     }
+
+    @Override
+    public List<Customer> getCustomerListByUserId(Integer userId) {
+        User user = userService.getUserById(userId);
+        if(user == null){
+            return null;
+        }
+        List<Customer> customerList = customerMapper.selectByComIdAndUserName(user.getComId(), null);
+        return customerList;
+    }
 }
