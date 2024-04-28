@@ -1,27 +1,27 @@
 package com.erp.service.Impl;
 
-import com.erp.bean.OrderItems;
-import com.erp.bean.User;
+import com.erp.bean.*;
 import com.erp.dao.OrderFormMapper;
 import com.erp.dao.OrderItemsMapper;
+import com.erp.dto.OrderDto;
 import com.erp.param.AddOrderItemParam;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
 import com.erp.param.SaveOrderParam;
 import com.erp.service.UserService;
 
-import com.erp.bean.OrderForm;
-
-import com.erp.bean.OrderFormExample;
 import com.erp.service.OrderFormService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,8 +40,15 @@ public class OrderFormServiceImpl implements OrderFormService {
 	private UserService userService;
 
 	@Override
-	public OrderForm selectByPrimaryKey(Integer key) {
-		return orderFormMapper.selectByPrimaryKey(key);
+	public OrderDto selectByPrimaryKey(Integer key) {
+		OrderForm orderForm = orderFormMapper.selectByPrimaryKey(key);
+		OrderItemsExample example = new OrderItemsExample();
+		example.createCriteria().andOrderIdEqualTo(key);
+		List<OrderItems> orderItemsList = orderItemsMapper.selectByExample(example);
+		OrderDto orderDto = new OrderDto();
+		BeanUtils.copyProperties(orderForm,orderDto);
+		orderDto.setOrderItemsList(orderItemsList);
+		return orderDto;
 	}
 	
 
@@ -71,9 +78,11 @@ public class OrderFormServiceImpl implements OrderFormService {
 		OrderForm orderForm = new OrderForm();
 		BeanUtils.copyProperties(param,orderForm);
 		orderForm.setComId(user.getComId());
+		orderForm.setComTel(user.getOrderTel());
+		orderForm.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		int count = orderFormMapper.insertSelective(orderForm);
 
-		param.getOrderItemParamList().stream().forEach(v->{
+		param.getOrderItemsList().stream().forEach(v->{
 			OrderItems orderItems =  new OrderItems();
 			BeanUtils.copyProperties(v,orderItems);
 			orderItems.setOrderId(orderForm.getId());
@@ -89,9 +98,10 @@ public class OrderFormServiceImpl implements OrderFormService {
 		OrderForm orderForm = new OrderForm();
 		BeanUtils.copyProperties(param,orderForm);
 		orderForm.setComId(user.getComId());
+		orderForm.setUpdateTime(new Date());
 		int count = orderFormMapper.updateByPrimaryKeySelective(orderForm);
 		orderItemsMapper.deleteByOrderId(orderForm.getId());
-		List<AddOrderItemParam> orderItemParamList = param.getOrderItemParamList();
+		List<AddOrderItemParam> orderItemParamList = param.getOrderItemsList();
 		orderItemParamList.stream().forEach(v->{
 			OrderItems orderItems =  new OrderItems();
 			BeanUtils.copyProperties(v,orderItems);

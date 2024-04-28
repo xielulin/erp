@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author xielulin
@@ -26,6 +27,10 @@ public class SkuController {
     @PostMapping("/getSkuList")
     public Result<PageInfo<Sku>> getSkuList(@RequestBody @Validated GetSkuListParam param) throws BaseException {
         return Result.ok(skuService.getSkuList(param));
+    }
+    @GetMapping("/getList")
+    public Result<List<Sku>> getList(@RequestParam Integer userId)  {
+        return Result.ok(skuService.getSkuListByUserId(userId));
     }
 
     @GetMapping("/getSku")

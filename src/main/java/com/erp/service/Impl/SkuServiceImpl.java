@@ -75,4 +75,14 @@ public class SkuServiceImpl implements SkuService {
         sku.setIsDel(true);
         return skuMapper.updateByPrimaryKeySelective(sku);
     }
+
+    @Override
+    public List<Sku> getSkuListByUserId(Integer userId) {
+        User user = userService.getUserById(userId);
+        if(user == null){
+            return null;
+        }
+        List<Sku> skuList = skuMapper.selectByComIdAndKeyword(user.getComId(), null);
+        return skuList;
+    }
 }

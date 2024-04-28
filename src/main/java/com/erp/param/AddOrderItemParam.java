@@ -15,7 +15,12 @@ import java.math.BigDecimal;
 public class AddOrderItemParam {
     @NotNull(message = "skuId不能为空")
     private Integer skuId;
-
+    @NotNull(message = "产品名称不能为空")
+    private String skuName;
+    @NotNull(message = "产品规格不能为空")
+    private String skuSpecification;
+    @NotNull(message = "产品型号不能为空")
+    private String code;
     @NotNull(message = "商品数量不能为空")
     @Min(value = 1,message = "商品数量不能小于1")
     private Integer skuNum;

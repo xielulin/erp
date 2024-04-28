@@ -7,6 +7,8 @@ import com.erp.param.GetSkuListParam;
 import com.erp.param.SaveSkuParam;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author xielulin
  * @create 2024-04-25 20:50
@@ -57,4 +59,6 @@ public interface SkuService {
      * @return int
      */
     int delSku(int id) throws BaseException;
+
+    List<Sku> getSkuListByUserId(Integer userId);
 }

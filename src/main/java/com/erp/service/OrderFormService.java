@@ -1,5 +1,6 @@
 package com.erp.service;
 
+import com.erp.dto.OrderDto;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
 import com.erp.param.SaveOrderParam;
@@ -23,7 +24,7 @@ public interface OrderFormService {
 	 * @return
 	 * @throws Exception
 	 */
-	OrderForm selectByPrimaryKey(Integer key);
+    OrderDto selectByPrimaryKey(Integer key);
 	
 	
 

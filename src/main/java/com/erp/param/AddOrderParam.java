@@ -35,8 +35,7 @@ public class AddOrderParam{
     private String customerAddr;
     @NotBlank(message = "客户联系方式不能为空")
     private String customerTel;
-    @NotBlank(message = "联系方式不能为空")
-    private String comTel;
+    private String remarks;
     @NotEmpty(message = "商品明细不能为空")
-    private List<AddOrderItemParam> orderItemParamList;
+    private List<AddOrderItemParam> orderItemsList;
 }

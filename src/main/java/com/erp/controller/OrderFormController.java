@@ -1,5 +1,6 @@
 package com.erp.controller;
 
+import com.erp.dto.OrderDto;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
 import com.erp.param.SaveOrderParam;
@@ -30,7 +31,7 @@ public class OrderFormController {
 	 * 根据主键查询
 	 */
 	@GetMapping("/getOrder")
-	public Result<OrderForm> selectByPrimaryKey(@RequestParam Integer id) {
+	public Result<OrderDto> selectByPrimaryKey(@RequestParam Integer id) {
 		return Result.ok(orderFormService.selectByPrimaryKey(id));
 	}
 	
