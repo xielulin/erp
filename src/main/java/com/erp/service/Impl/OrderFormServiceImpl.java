@@ -79,7 +79,8 @@ public class OrderFormServiceImpl implements OrderFormService {
 		BeanUtils.copyProperties(param,orderForm);
 		orderForm.setComId(user.getComId());
 		orderForm.setComTel(user.getOrderTel());
-		orderForm.setCreateTime(new Timestamp(System.currentTimeMillis()));
+		orderForm.setCreateTime(new Date());
+		orderForm.setUpdateTime(new Date());
 		int count = orderFormMapper.insertSelective(orderForm);
 
 		param.getOrderItemsList().stream().forEach(v->{
