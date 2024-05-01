@@ -64,13 +64,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Integer id) {
+    public User getUserById(Integer id) throws BaseException {
         User user = userMapper.selectByPrimaryKey(id);
+        if(user == null){
+            throw new BaseException(EmBussinessError.USER_NOT_EXIT);
+        }
         return user;
     }
 
     @Override
-    public UserDto getUserDetailById(int id) {
+    public UserDto getUserDetailById(int id) throws BaseException {
         User user = getUserById(id);
         if(user == null){
             return null;

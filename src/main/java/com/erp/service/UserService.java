@@ -39,9 +39,9 @@ public interface UserService {
      * @param id
      * @return com.erp.bean.User
      */
-    User getUserById(Integer id);
+    User getUserById(Integer id) throws BaseException;
 
-    UserDto getUserDetailById(int id);
+    UserDto getUserDetailById(int id) throws BaseException;
 
     UserDto editUserDetail(EditUserParam param);
 }

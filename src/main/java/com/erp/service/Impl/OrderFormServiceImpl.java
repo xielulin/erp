@@ -1,9 +1,11 @@
 package com.erp.service.Impl;
 
 import com.erp.bean.*;
+import com.erp.dao.CompanyMapper;
 import com.erp.dao.OrderFormMapper;
 import com.erp.dao.OrderItemsMapper;
 import com.erp.dto.OrderDto;
+import com.erp.exception.BaseException;
 import com.erp.param.AddOrderItemParam;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
@@ -14,13 +16,11 @@ import com.erp.service.OrderFormService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +36,8 @@ public class OrderFormServiceImpl implements OrderFormService {
 	private OrderFormMapper orderFormMapper;
 	@Resource
 	private OrderItemsMapper orderItemsMapper;
+	@Resource
+	private CompanyMapper companyMapper;
 	@Resource
 	private UserService userService;
 
@@ -54,7 +56,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 
 	//注意，若不提供分页参数，可能导致查询出大量数据！
 	@Override
-	public PageInfo<OrderForm> select(GetOrderFormListParam param) {
+	public PageInfo<OrderForm> select(GetOrderFormListParam param) throws BaseException {
 		User user = userService.getUserById(param.getUserId());
 		OrderFormExample example = new OrderFormExample();
 		OrderFormExample.Criteria criteria = example.createCriteria();
@@ -73,7 +75,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 
 	@Override
 	@Transactional
-	public int add(AddOrderParam param){
+	public int add(AddOrderParam param) throws BaseException {
 		User user = userService.getUserById(param.getUserId());
 		OrderForm orderForm = new OrderForm();
 		BeanUtils.copyProperties(param,orderForm);
@@ -81,6 +83,8 @@ public class OrderFormServiceImpl implements OrderFormService {
 		orderForm.setComTel(user.getOrderTel());
 		orderForm.setCreateTime(new Date());
 		orderForm.setUpdateTime(new Date());
+		Company company = companyMapper.selectByPrimaryKey(user.getComId());
+		orderForm.setComName(company.getComName());
 		int count = orderFormMapper.insertSelective(orderForm);
 
 		param.getOrderItemsList().stream().forEach(v->{
@@ -94,7 +98,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 	}
 	
 	@Override
-	public int updateByPrimaryKey(SaveOrderParam param){
+	public int updateByPrimaryKey(SaveOrderParam param) throws BaseException {
 		User user = userService.getUserById(param.getUserId());
 		OrderForm orderForm = new OrderForm();
 		BeanUtils.copyProperties(param,orderForm);

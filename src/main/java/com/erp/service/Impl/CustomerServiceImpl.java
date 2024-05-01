@@ -16,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,11 +32,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Resource
     private UserService userService;
     @Override
-    public PageInfo<Customer> getCustomerListByComIdAndName(GetCustomerListParam param) {
+    public PageInfo<Customer> getCustomerListByComIdAndName(GetCustomerListParam param) throws BaseException {
         User user = userService.getUserById(param.getUserId());
-        if(user == null){
-            return null;
-        }
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
         List<Customer> customers = customerMapper.selectByComIdAndUserName(user.getComId(),param.getName());
         PageInfo<Customer> pageInfo = new PageInfo<>(customers);
@@ -60,6 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = new Customer();
         BeanUtils.copyProperties(param,customer);
         customer.setIsDel(false);
+        customer.setCreateTime(new Date());
         User user = userService.getUserById(param.getUserId());
         if(user == null){
             throw new BaseException(EmBussinessError.USER_NOT_EXIT);
@@ -77,11 +76,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerListByUserId(Integer userId) {
+    public List<Customer> getCustomerListByUserId(Integer userId) throws BaseException {
         User user = userService.getUserById(userId);
-        if(user == null){
-            return null;
-        }
         List<Customer> customerList = customerMapper.selectByComIdAndUserName(user.getComId(), null);
         return customerList;
     }

@@ -2,6 +2,7 @@ package com.erp.interceptor;
 
 import com.erp.bean.User;
 import com.erp.constants.Constant;
+import com.erp.exception.BaseException;
 import com.erp.service.UserService;
 import com.erp.utils.RequestUtil;
 import com.erp.utils.JwtUtil;
@@ -28,7 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     //这个方法是在访问接口之前执行的，用户调用指定接口之前验证登陆状态
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws BaseException {
 
         String token = (String) RequestUtil.getHeaderValueByName(request, "Authentication");
         log.info("获取到的token, token:{}", token);

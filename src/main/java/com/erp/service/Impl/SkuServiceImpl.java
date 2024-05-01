@@ -30,11 +30,8 @@ public class SkuServiceImpl implements SkuService {
     @Resource
    private UserService userService;
     @Override
-    public PageInfo<Sku> getSkuList(GetSkuListParam param) {
+    public PageInfo<Sku> getSkuList(GetSkuListParam param) throws BaseException {
         User user = userService.getUserById(param.getUserId());
-        if(user == null){
-            return null;
-        }
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
         List<Sku> customers = skuMapper.selectByComIdAndKeyword(user.getComId(),param.getKeyword());
         PageInfo<Sku> pageInfo = new PageInfo<>(customers);
@@ -77,7 +74,7 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    public List<Sku> getSkuListByUserId(Integer userId) {
+    public List<Sku> getSkuListByUserId(Integer userId) throws BaseException {
         User user = userService.getUserById(userId);
         if(user == null){
             return null;

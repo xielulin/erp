@@ -12,14 +12,19 @@ import javax.validation.constraints.NotNull;
  **/
 @Data
 public class SaveCustomerParam {
-    @NotNull
+    @NotNull(message = "userId不能为空")
     private Integer userId;
-    @NotBlank
+    @NotBlank(message = "姓名不能为空")
     private String name;
-    @NotBlank
+    @NotBlank(message = "电话不能为空")
     private String tel;
-    @NotBlank
+    @NotBlank(message = "地址不能为空")
     private String addr;
-    @NotBlank
+    @NotBlank(message = "物流不能为空")
     private String logisticsName;
+    @NotBlank(message = "客户所属省份不能为空")
+    private String province;
+    @NotBlank(message = "客户所属城市不能为空")
+    private String city;
+
 }

@@ -1,6 +1,7 @@
 package com.erp.service;
 
 import com.erp.dto.OrderDto;
+import com.erp.exception.BaseException;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
 import com.erp.param.SaveOrderParam;
@@ -34,7 +35,7 @@ public interface OrderFormService {
 	 * @return
 	 * @throws Exception
 	 */
-	PageInfo<OrderForm> select(GetOrderFormListParam param);
+	PageInfo<OrderForm> select(GetOrderFormListParam param) throws BaseException;
 
 
 	/**
@@ -43,7 +44,7 @@ public interface OrderFormService {
 	 * @return
 	 * @throws Exception
 	 */
-	int add(AddOrderParam param) ;
+	int add(AddOrderParam param) throws BaseException;
 
 	/**
 	 * 更新记录

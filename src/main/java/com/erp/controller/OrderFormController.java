@@ -1,6 +1,7 @@
 package com.erp.controller;
 
 import com.erp.dto.OrderDto;
+import com.erp.exception.BaseException;
 import com.erp.param.AddOrderParam;
 import com.erp.param.GetOrderFormListParam;
 import com.erp.param.SaveOrderParam;
@@ -38,12 +39,12 @@ public class OrderFormController {
 	
 
 	@PostMapping("/getOrderList")
-	public Result<PageInfo<OrderForm>> list(@RequestBody @Validated GetOrderFormListParam param)  {
+	public Result<PageInfo<OrderForm>> list(@RequestBody @Validated GetOrderFormListParam param) throws BaseException {
 		return Result.ok(orderFormService.select(param));
 	}
 
 	@PostMapping("/addOrder")
-	public Result add(@RequestBody @Validated AddOrderParam param) {
+	public Result add(@RequestBody @Validated AddOrderParam param) throws BaseException {
 		int addNum = orderFormService.add(param);
 		if(addNum != 1){
 			return Result.warn("新增失败");

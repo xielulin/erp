@@ -38,7 +38,7 @@ public class UserController {
         return Result.ok(userToken);
     }
     @GetMapping("/getUserById")
-    public Result<UserDto> getUserById(@RequestParam int id) {
+    public Result<UserDto> getUserById(@RequestParam int id) throws BaseException {
         return Result.ok(userService.getUserDetailById(id));
     }
     @PostMapping("/editUserDetail")

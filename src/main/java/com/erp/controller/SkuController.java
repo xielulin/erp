@@ -29,7 +29,7 @@ public class SkuController {
         return Result.ok(skuService.getSkuList(param));
     }
     @GetMapping("/getList")
-    public Result<List<Sku>> getList(@RequestParam Integer userId)  {
+    public Result<List<Sku>> getList(@RequestParam Integer userId) throws BaseException {
         return Result.ok(skuService.getSkuListByUserId(userId));
     }
 

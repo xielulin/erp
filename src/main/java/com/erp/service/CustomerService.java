@@ -22,7 +22,7 @@ public interface CustomerService {
      * @param param
      * @return java.util.List<com.erp.bean.Customer>
      */
-    PageInfo<Customer> getCustomerListByComIdAndName(GetCustomerListParam param);
+    PageInfo<Customer> getCustomerListByComIdAndName(GetCustomerListParam param) throws BaseException;
 
     /**
      * @description 根据id获取客户信息
@@ -67,5 +67,5 @@ public interface CustomerService {
      * @param userId
      * @return java.util.List<com.erp.bean.Customer>
      */
-    List<Customer> getCustomerListByUserId(Integer userId);
+    List<Customer> getCustomerListByUserId(Integer userId) throws BaseException;
 }

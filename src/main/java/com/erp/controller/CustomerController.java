@@ -34,7 +34,7 @@ public class CustomerController {
     }
 
     @GetMapping("/getList")
-    public Result<List<Customer>> getList(@RequestParam Integer userId)  {
+    public Result<List<Customer>> getList(@RequestParam Integer userId) throws BaseException {
         return Result.ok(customerService.getCustomerListByUserId(userId));
     }
 

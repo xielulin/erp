@@ -22,7 +22,7 @@ public interface SkuService {
      * @param param
      * @return com.github.pagehelper.PageInfo<com.erp.bean.Sku>
      */
-    PageInfo<Sku> getSkuList(GetSkuListParam param);
+    PageInfo<Sku> getSkuList(GetSkuListParam param) throws BaseException;
 
     /**
      * @description 根据id获取sku
@@ -60,5 +60,5 @@ public interface SkuService {
      */
     int delSku(int id) throws BaseException;
 
-    List<Sku> getSkuListByUserId(Integer userId);
+    List<Sku> getSkuListByUserId(Integer userId) throws BaseException;
 }
