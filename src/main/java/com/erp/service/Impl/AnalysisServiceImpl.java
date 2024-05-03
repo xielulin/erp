@@ -25,14 +25,14 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Resource
     private UserService userService;
     @Override
-    public List<CustomerCityDto> getCustomerCityData(Integer userId) throws BaseException {
+    public List<CustomerCityDto> getCustomerCityData(Integer userId, String date) throws BaseException {
         User user = userService.getUserById(userId);
-        return customerMapper.getCustomerCityData(user.getComId());
+        return customerMapper.getCustomerCityData(user.getComId(),date);
     }
 
     @Override
-    public List<CustomerProvinceDto> getCustomerProvinceData(Integer id) throws BaseException {
+    public List<CustomerProvinceDto> getCustomerProvinceData(Integer id, String date) throws BaseException {
         User user = userService.getUserById(id);
-        return customerMapper.getCustomerProvinceData(user.getComId());
+        return customerMapper.getCustomerProvinceData(user.getComId(),date);
     }
 }

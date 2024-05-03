@@ -67,6 +67,6 @@ public interface CustomerMapper {
 
     List<Customer> selectByComIdAndUserName(@Param("comId") Integer comId,@Param("name") String name);
 
-    List<CustomerCityDto> getCustomerCityData(Integer comId);
-    List<CustomerProvinceDto> getCustomerProvinceData(Integer comId);
+    List<CustomerCityDto> getCustomerCityData(@Param("comId") Integer comId, @Param("date")String date);
+    List<CustomerProvinceDto> getCustomerProvinceData(@Param("comId") Integer comId, @Param("date")String date);
 }

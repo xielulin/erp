@@ -32,13 +32,13 @@ public class AnalysisController {
      * @return com.erp.response.Result<java.util.List < com.erp.dto.CustomerCityDto>>
      */
     @GetMapping("/customer/city")
-    public Result<List<CustomerCityDto>> getCustomerCityData(@RequestParam Integer id) throws BaseException {
-        return Result.ok(analysisService.getCustomerCityData(id));
+    public Result<List<CustomerCityDto>> getCustomerCityData(@RequestParam Integer id,@RequestParam(required = false) String date) throws BaseException {
+        return Result.ok(analysisService.getCustomerCityData(id,date));
     }
 
 
     @GetMapping("/customer/province")
-    public Result<List<CustomerProvinceDto>> getCustomerProvinceData(@RequestParam Integer id) throws BaseException {
-        return Result.ok(analysisService.getCustomerProvinceData(id));
+    public Result<List<CustomerProvinceDto>> getCustomerProvinceData(@RequestParam Integer id,@RequestParam(required = false)String date) throws BaseException {
+        return Result.ok(analysisService.getCustomerProvinceData(id,date));
     }
 }

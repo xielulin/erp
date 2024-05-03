@@ -17,9 +17,10 @@ public interface AnalysisService {
      * @author xielulin
      * @date 2024/5/1
      * @param userId
+     * @param date
      * @return java.util.List<com.erp.dto.CustomerCityDto>
      */
-    List<CustomerCityDto> getCustomerCityData(Integer userId) throws BaseException;
+    List<CustomerCityDto> getCustomerCityData(Integer userId, String date) throws BaseException;
 
-    List<CustomerProvinceDto> getCustomerProvinceData(Integer id) throws BaseException;
+    List<CustomerProvinceDto> getCustomerProvinceData(Integer id, String date) throws BaseException;
 }

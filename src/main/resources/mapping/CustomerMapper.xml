@@ -267,7 +267,11 @@
       This element was generated on Wed Apr 17 19:56:18 CST 2024.
     -->
     select city cityName, COUNT(city)customerNum from customer where
-    com_id = #{com_id,jdbcType=INTEGER} and city !='' GROUP BY city;
+    com_id = #{comId,jdbcType=INTEGER} and city !=''
+    <if test="date != null and date !='' " >
+     and  DATE_FORMAT(create_time,'%Y-%m') = #{date,jdbcType=VARCHAR}
+    </if>
+    GROUP BY city;
   </select>
   <select id="getCustomerProvinceData" parameterType="java.lang.Integer" resultType="com.erp.dto.CustomerProvinceDto">
     <!--
@@ -276,6 +280,10 @@
       This element was generated on Wed Apr 17 19:56:18 CST 2024.
     -->
     select province provinceName, COUNT(city)customerNum from customer where
-    com_id = #{com_id,jdbcType=INTEGER} and province !='' GROUP BY province;
+    com_id = #{comId,jdbcType=INTEGER} and province !=''
+    <if test="date != null and date !='' " >
+      and  DATE_FORMAT(create_time,'%Y-%m') = #{date,jdbcType=VARCHAR}
+    </if>
+    GROUP BY province;
   </select>
 </mapper>

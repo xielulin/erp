@@ -91,6 +91,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 			OrderItems orderItems =  new OrderItems();
 			BeanUtils.copyProperties(v,orderItems);
 			orderItems.setOrderId(orderForm.getId());
+			orderItems.setCreateTime(new Date());
 			orderItemsMapper.insertSelective(orderItems);
 		});
 
@@ -111,6 +112,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 			OrderItems orderItems =  new OrderItems();
 			BeanUtils.copyProperties(v,orderItems);
 			orderItems.setOrderId(orderForm.getId());
+			orderItems.setCreateTime(new Date());
 			orderItemsMapper.insertSelective(orderItems);
 		});
 		return count;
