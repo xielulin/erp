@@ -255,4 +255,40 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getSkuSalesRevenue" parameterType="java.lang.Integer" resultType="com.erp.dto.SkuSalesRevenueDto">
+    select code,sum(i.total_price)price   from order_items i ,order_form o where i.order_id=o.id and
+    com_id = #{comId,jdbcType=INTEGER}  and is_del = 0
+    <if test="date != null and date !='' " >
+      and  DATE_FORMAT(o.create_time,'%Y-%m') = #{date,jdbcType=VARCHAR}
+    </if>
+     GROUP BY code ;
+  </select>
+
+  <select id="getSkuSalesNum" parameterType="java.lang.Integer" resultType="com.erp.dto.SkuSalesNumDto">
+    select code,sum(i.sku_num)num   from order_items i ,order_form o where i.order_id=o.id and
+    com_id = #{comId,jdbcType=INTEGER}  and is_del = 0
+    <if test="date != null and date !='' " >
+      and  DATE_FORMAT(o.create_time,'%Y-%m') = #{date,jdbcType=VARCHAR}
+    </if>
+    GROUP BY code ;
+  </select>
+
+  <select id="getSalesMonthData" parameterType="java.lang.Integer" resultType="com.erp.dto.SkuSalesDataDto">
+    select sum(i.sku_num)num ,DATE_FORMAT(o.create_time,'%Y-%m') date  from order_items i ,order_form o where i.order_id=o.id and
+    com_id = #{comId,jdbcType=INTEGER}  and is_del = 0
+    <if test="skuId != null and skuId !='' " >
+      and  sku_id= #{skuId,jdbcType=INTEGER}
+    </if>
+    GROUP BY date order by date asc limit 12  ;
+  </select>
+
+  <select id="getSalesDayData" parameterType="java.lang.Integer" resultType="com.erp.dto.SkuSalesDataDto">
+    select sum(i.sku_num)num ,DATE_FORMAT(o.create_time,'%Y-%m-%d') date  from order_items i ,order_form o where i.order_id=o.id and
+    com_id = #{comId,jdbcType=INTEGER}  and is_del = 0
+    <if test="skuId != null and skuId !='' " >
+      and  sku_id= #{skuId,jdbcType=INTEGER}
+    </if>
+    GROUP BY date  order by date asc limit 30 ;
+  </select>
 </mapper>
