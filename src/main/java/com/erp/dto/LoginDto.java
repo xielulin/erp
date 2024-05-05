@@ -11,4 +11,5 @@ import lombok.Data;
 public class LoginDto {
     private String token;
     private int userId;
+    private String userName;
 }
