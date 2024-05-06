@@ -6,7 +6,7 @@ mybatis:
 spring:
   datasource:
     name: erp
-    url: jdbc:mysql://111.230.100.213:3306/erp?characterEncoding=utf8&useUnicode=true&verifyServerCertificate=false&useSSL=false&requireSSL=false
+    url: jdbc:mysql://111.230.100.213:3306/erp?characterEncoding=utf8&useUnicode=true&verifyServerCertificate=false&useSSL=false&requireSSL=false&serverTimezone=GMT%2B8&useTimezone=true
     username: root
     password: Mysqltx123
     type: com.alibaba.druid.pool.DruidDataSource
