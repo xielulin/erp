@@ -30,18 +30,8 @@ import static com.erp.exception.EmBussinessError.AUTHORITY_ERROR;
 public class BusinessServiceImpl implements BusinessService {
     @Resource
     private BusinessMapper businessMapper;
-    @Resource
-    private UserService userService;
-    @Resource
-    private CompanyMapper companyMapper;
     @Override
-    public PageInfo<Business> getBusinessList(GetBusiness param) throws BaseException {
-        User user = userService.getUserById(param.getUserId());
-        Company company = companyMapper.selectByPrimaryKey(user.getComId());
-
-        if(company.getLevel() == Constant.CompanyLevelConstant.NORMAL){
-            throw new BaseException(AUTHORITY_ERROR);
-        }
+    public PageInfo<Business> getBusinessList(GetBusiness param) {
         PageHelper.startPage(param.getPageNum(),param.getPageSize());
         BusinessExample example = new BusinessExample();
         BusinessExample.Criteria criteria = example.createCriteria();

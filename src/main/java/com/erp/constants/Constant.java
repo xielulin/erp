@@ -89,7 +89,9 @@ public class Constant {
          * @description 正常状态
          **/
         public static final byte NORMAL = 1;  //普通企业
-        public static final byte VIP = 2;    //vip企业
+        public static final byte VIP = 2;    //vip企业 数据+图表
+        public static final byte DATA = 3;  //数据
+        public static final byte CHART = 4; //图表
     }
 }
 
