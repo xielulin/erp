@@ -85,13 +85,16 @@ public class Constant {
      * @date 2018/12/28
      */
     public static final class CompanyLevelConstant{
-        /**
-         * @description 正常状态
-         **/
+
         public static final byte NORMAL = 1;  //普通企业
         public static final byte VIP = 2;    //vip企业 数据+图表
         public static final byte DATA = 3;  //数据
         public static final byte CHART = 4; //图表
+    }
+
+    public static final class UserLevelConstant{
+        public static final byte MAIN = 1;  //主账号
+        public static final byte CHIRED = 2;    //子账号
     }
 }
 

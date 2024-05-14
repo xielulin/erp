@@ -1,6 +1,7 @@
 package com.erp.service.Impl;
 
 import com.erp.bean.User;
+import com.erp.constants.Constant;
 import com.erp.dao.CustomerMapper;
 import com.erp.dao.OrderItemsMapper;
 import com.erp.dto.*;
@@ -31,31 +32,66 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Override
     public List<CustomerCityDto> getCustomerCityData(Integer userId, String date) throws BaseException {
         User user = userService.getUserById(userId);
-        return customerMapper.getCustomerCityData(user.getComId(),date);
+        Integer comId = null;
+        Integer id = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            id = user.getId();
+        }
+        return customerMapper.getCustomerCityData(comId,id,date);
     }
 
     @Override
     public List<CustomerProvinceDto> getCustomerProvinceData(Integer id, String date) throws BaseException {
         User user = userService.getUserById(id);
-        return customerMapper.getCustomerProvinceData(user.getComId(),date);
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
+        return customerMapper.getCustomerProvinceData(comId,userId,date);
     }
 
     @Override
     public List<SkuSalesRevenueDto> skuSalesRevenue(Integer id, String date) throws BaseException {
         User user = userService.getUserById(id);
-        return orderItemsMapper.getSkuSalesRevenue(user.getComId(),date);
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
+        return orderItemsMapper.getSkuSalesRevenue(comId,userId,date);
     }
 
     @Override
     public List<SkuSalesNumDto> skuSalesNum(Integer id, String date) throws BaseException {
         User user = userService.getUserById(id);
-        return orderItemsMapper.getSkuSalesNum(user.getComId(),date);
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
+        return orderItemsMapper.getSkuSalesNum(comId,userId,date);
     }
 
     @Override
     public List<SkuSalesDataDto> salesMonthData(Integer id, Integer skuId) throws BaseException {
         User user = userService.getUserById(id);
-        List<SkuSalesDataDto> salesMonthData = orderItemsMapper.getSalesMonthData(user.getComId(), skuId);
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
+        List<SkuSalesDataDto> salesMonthData = orderItemsMapper.getSalesMonthData(comId,userId, skuId);
         return handleMonthData(salesMonthData);
     }
 
@@ -92,7 +128,14 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Override
     public List<SkuSalesDataDto> salesDayData(Integer id, Integer skuId) throws BaseException {
         User user = userService.getUserById(id);
-        List<SkuSalesDataDto> salesDayData = orderItemsMapper.getSalesDayData(user.getComId(), skuId);
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
+        List<SkuSalesDataDto> salesDayData = orderItemsMapper.getSalesDayData(comId,userId, skuId);
 
         return  handleDayData(salesDayData);
     }

@@ -32,7 +32,7 @@ public class OrderFormController {
 	 * 根据主键查询
 	 */
 	@GetMapping("/getOrder")
-	public Result<OrderDto> selectByPrimaryKey(@RequestParam Integer id) {
+	public Result<OrderDto> selectByPrimaryKey(@RequestParam Integer id) throws BaseException {
 		return Result.ok(orderFormService.selectByPrimaryKey(id));
 	}
 	
@@ -62,7 +62,7 @@ public class OrderFormController {
 	}
 
 	@DeleteMapping("/delOrder")
-	public Result del(@RequestParam Integer id){
+	public Result del(@RequestParam Integer id) throws BaseException {
 		int delNum = orderFormService.delByPrimaryKey(id);
 		if(delNum != 1){
 			return Result.warn("删除失败");

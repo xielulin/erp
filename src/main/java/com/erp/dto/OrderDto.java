@@ -14,4 +14,5 @@ import java.util.List;
 @Data
 public class OrderDto extends OrderForm {
     private List<OrderItems> orderItemsList;
+    private String createUserName;
 }

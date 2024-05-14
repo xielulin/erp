@@ -2,6 +2,7 @@ package com.erp.service.Impl;
 
 import com.erp.bean.Customer;
 import com.erp.bean.User;
+import com.erp.constants.Constant;
 import com.erp.dao.CustomerMapper;
 import com.erp.exception.BaseException;
 import com.erp.exception.EmBussinessError;
@@ -34,8 +35,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public PageInfo<Customer> getCustomerListByComIdAndName(GetCustomerListParam param) throws BaseException {
         User user = userService.getUserById(param.getUserId());
+        Integer comId = null;
+        Integer userId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+        }else {
+            userId = user.getId();
+        }
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
-        List<Customer> customers = customerMapper.selectByComIdAndUserName(user.getComId(),param.getName());
+        List<Customer> customers = customerMapper.selectByComIdAndUserName(comId,userId,param.getName());
         PageInfo<Customer> pageInfo = new PageInfo<>(customers);
         return pageInfo;
     }
@@ -78,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomerListByUserId(Integer userId) throws BaseException {
         User user = userService.getUserById(userId);
-        List<Customer> customerList = customerMapper.selectByComIdAndUserName(user.getComId(), null);
+        List<Customer> customerList = customerMapper.selectByComIdAndUserName(user.getComId(), userId, null);
         return customerList;
     }
 }

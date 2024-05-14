@@ -1,6 +1,7 @@
 package com.erp.service.Impl;
 
 import com.erp.bean.*;
+import com.erp.constants.Constant;
 import com.erp.dao.CompanyMapper;
 import com.erp.dao.OrderFormMapper;
 import com.erp.dao.OrderItemsMapper;
@@ -42,7 +43,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 	private UserService userService;
 
 	@Override
-	public OrderDto selectByPrimaryKey(Integer key) {
+	public OrderDto selectByPrimaryKey(Integer key) throws BaseException {
 		OrderForm orderForm = orderFormMapper.selectByPrimaryKey(key);
 		OrderItemsExample example = new OrderItemsExample();
 		example.createCriteria().andOrderIdEqualTo(key);
@@ -50,6 +51,8 @@ public class OrderFormServiceImpl implements OrderFormService {
 		OrderDto orderDto = new OrderDto();
 		BeanUtils.copyProperties(orderForm,orderDto);
 		orderDto.setOrderItemsList(orderItemsList);
+		User user = userService.getUserById(orderForm.getUserId());
+		orderDto.setCreateUserName(user.getName());
 		return orderDto;
 	}
 	
@@ -60,7 +63,11 @@ public class OrderFormServiceImpl implements OrderFormService {
 		User user = userService.getUserById(param.getUserId());
 		OrderFormExample example = new OrderFormExample();
 		OrderFormExample.Criteria criteria = example.createCriteria();
-		criteria.andComIdEqualTo(user.getComId());
+		if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+			criteria.andComIdEqualTo(user.getComId());
+		}else {
+			criteria.andUserIdEqualTo(user.getId());
+		}
 		criteria.andIsDelEqualTo(false);
 		if(StringUtils.isNotBlank(param.getCustomerName())){
 			criteria.andCustomerNameLike("%"+param.getCustomerName()+"%");
@@ -119,7 +126,7 @@ public class OrderFormServiceImpl implements OrderFormService {
 	}
 
 	@Override
-	public int delByPrimaryKey(Integer key){
+	public int delByPrimaryKey(Integer key) throws BaseException {
 		OrderForm orderForm = selectByPrimaryKey(key);
 		orderForm.setIsDel(true);
 		int upateNum = orderFormMapper.updateByPrimaryKeySelective(orderForm);

@@ -81,9 +81,10 @@ public interface OrderItemsMapper {
      * @date 2024/5/4
      * @param comId
      * @param date
+     * @param userId
      * @return java.util.List<com.erp.param.SkuSalesRevenueDto>
      */
-    List<SkuSalesRevenueDto> getSkuSalesRevenue(@Param("comId") Integer comId, @Param("date")String date);
+    List<SkuSalesRevenueDto> getSkuSalesRevenue(@Param("comId") Integer comId, @Param("userId") Integer userId, @Param("date") String date);
 
     /**
      * @description 根据企业id和日期获取各产品的销售数数据
@@ -91,9 +92,10 @@ public interface OrderItemsMapper {
      * @date 2024/5/4
      * @param comId
      * @param date
+     * @param userId
      * @return java.util.List<com.erp.dto.SkuSalesNumDto>
      */
-    List<SkuSalesNumDto> getSkuSalesNum(@Param("comId") Integer comId, @Param("date")String date);
+    List<SkuSalesNumDto> getSkuSalesNum(@Param("comId") Integer comId, @Param("userId") Integer userId, @Param("date") String date);
 
     /**
      * @description 根据企业id和产品id获取近12个月产品的销售数
@@ -101,9 +103,10 @@ public interface OrderItemsMapper {
      * @date 2024/5/4
      * @param comId
      * @param skuId
+     * @param comId
      * @return java.util.List<com.erp.dto.SkuSalesDataDto>
      */
-    List<SkuSalesDataDto> getSalesMonthData(@Param("comId") Integer comId, @Param("skuId")Integer skuId);
+    List<SkuSalesDataDto> getSalesMonthData(@Param("comId") Integer comId,@Param("userId") Integer userId, @Param("skuId") Integer skuId);
 
     /**
      * @description 根据企业id和产品id获取近30天产品的销售数
@@ -113,5 +116,5 @@ public interface OrderItemsMapper {
      * @param skuId
      * @return java.util.List<com.erp.dto.SkuSalesDataDto>
      */
-    List<SkuSalesDataDto> getSalesDayData(@Param("comId") Integer comId, @Param("skuId")Integer skuId);
+    List<SkuSalesDataDto> getSalesDayData(@Param("comId") Integer comId,@Param("userId") Integer userId, @Param("skuId")Integer skuId);
 }

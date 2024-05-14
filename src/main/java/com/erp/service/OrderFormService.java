@@ -25,7 +25,7 @@ public interface OrderFormService {
 	 * @return
 	 * @throws Exception
 	 */
-    OrderDto selectByPrimaryKey(Integer key);
+    OrderDto selectByPrimaryKey(Integer key) throws BaseException;
 	
 	
 
@@ -60,7 +60,7 @@ public interface OrderFormService {
 	 * @return
 	 * @throws Exception
 	 */
-	int delByPrimaryKey(Integer key);
+	int delByPrimaryKey(Integer key) throws BaseException;
 	
 
 }
