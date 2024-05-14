@@ -51,7 +51,7 @@ public class SkuServiceImpl implements SkuService {
     public int editSku(EditSkuParam param, Integer userId) throws BaseException {
         Sku sku = getSkuById(param.getId());
         if(sku.getUserId().intValue() != userId){
-            throw new BaseException(EmBussinessError.AUTHORITY_ERROR,"删除失败，无法删除其它用户添加的产品");
+            throw new BaseException(EmBussinessError.AUTHORITY_ERROR,"修改失败，无法修改其它用户添加的产品");
         }
         BeanUtils.copyProperties(param,sku);
         return skuMapper.updateByPrimaryKeySelective(sku);
