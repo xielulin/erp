@@ -86,7 +86,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomerListByUserId(Integer userId) throws BaseException {
         User user = userService.getUserById(userId);
-        List<Customer> customerList = customerMapper.selectByComIdAndUserName(user.getComId(), userId, null);
+        Integer comId = null;
+        if(user.getLevel() == Constant.UserLevelConstant.MAIN){
+            comId = user.getComId();
+            userId =null;
+        }else {
+            userId = user.getId();
+        }
+        List<Customer> customerList = customerMapper.selectByComIdAndUserName(comId, userId, null);
         return customerList;
     }
 }
