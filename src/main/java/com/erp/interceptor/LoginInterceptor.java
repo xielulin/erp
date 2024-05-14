@@ -75,6 +75,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 throw new BaseException(EmBussinessError.AUTHORITY_ERROR);
             }
         }
+        request.setAttribute("user",user);
         return true;
     }
 }

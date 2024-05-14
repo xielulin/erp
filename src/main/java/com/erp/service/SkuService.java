@@ -38,9 +38,10 @@ public interface SkuService {
      * @author xielulin
      * @date 2024/4/25
      * @param param
+     * @param userId
      * @return int
      */
-    int editSku(EditSkuParam param);
+    int editSku(EditSkuParam param, Integer userId) throws BaseException;
 
     /**
      * @description 新增sku
@@ -56,9 +57,10 @@ public interface SkuService {
      * @author xielulin
      * @date 2024/4/25
      * @param id
+     * @param userId
      * @return int
      */
-    int delSku(int id) throws BaseException;
+    int delSku(int id, Integer userId) throws BaseException;
 
     List<Sku> getSkuListByUserId(Integer userId) throws BaseException;
 }

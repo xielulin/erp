@@ -48,8 +48,11 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    public int editSku(EditSkuParam param) {
-        Sku sku = new Sku();
+    public int editSku(EditSkuParam param, Integer userId) throws BaseException {
+        Sku sku = getSkuById(param.getId());
+        if(sku.getUserId().intValue() != userId){
+            throw new BaseException(EmBussinessError.AUTHORITY_ERROR,"删除失败，无法删除其它用户添加的产品");
+        }
         BeanUtils.copyProperties(param,sku);
         return skuMapper.updateByPrimaryKeySelective(sku);
     }
@@ -67,8 +70,11 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    public int delSku(int id) throws BaseException {
+    public int delSku(int id, Integer userId) throws BaseException {
         Sku sku = getSkuById(id);
+        if(sku.getUserId().intValue() != userId){
+            throw new BaseException(EmBussinessError.AUTHORITY_ERROR,"删除失败，无法删除其它用户添加的产品");
+        }
         sku.setIsDel(true);
         return skuMapper.updateByPrimaryKeySelective(sku);
     }

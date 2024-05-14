@@ -1,6 +1,7 @@
 package com.erp.controller;
 
 import com.erp.bean.Sku;
+import com.erp.bean.User;
 import com.erp.exception.BaseException;
 import com.erp.param.EditSkuParam;
 import com.erp.param.GetSkuListParam;
@@ -8,10 +9,12 @@ import com.erp.param.SaveSkuParam;
 import com.erp.response.Result;
 import com.erp.service.SkuService;
 import com.github.pagehelper.PageInfo;
+import org.springframework.http.HttpRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -39,8 +42,9 @@ public class SkuController {
     }
 
     @PostMapping("/editSku")
-    public Result<Integer> editSku(@RequestBody@Validated EditSkuParam param) {
-        int updateNum = skuService.editSku(param);
+    public Result<Integer> editSku(@RequestBody@Validated EditSkuParam param, HttpServletRequest request) throws BaseException {
+        User user = (User) request.getAttribute("user");
+        int updateNum = skuService.editSku(param,user.getId());
         if(updateNum != 1){
             return Result.warn("修改失败");
         }
@@ -55,8 +59,9 @@ public class SkuController {
         return Result.ok();
     }
     @DeleteMapping("/delSku")
-    public Result<Sku> delSku(@RequestParam int id) throws BaseException {
-        int delNum = skuService.delSku(id);
+    public Result<Sku> delSku(@RequestParam int id, HttpServletRequest request) throws BaseException {
+        User user = (User) request.getAttribute("user");
+        int delNum = skuService.delSku(id,user.getId());
         if(delNum != 1){
             return Result.warn("删除失败");
         }
