@@ -1,5 +1,7 @@
 package com.erp.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Customer {
@@ -82,6 +84,7 @@ public class Customer {
      *
      * @mbg.generated Tue May 14 15:49:37 CST 2024
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+08" )
     private Date createTime;
 
     /**

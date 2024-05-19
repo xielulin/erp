@@ -1,5 +1,7 @@
 package com.erp.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -119,6 +121,7 @@ public class OrderForm {
      *
      * @mbg.generated Fri May 17 12:02:31 CST 2024
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+08" )
     private Date createTime;
 
     /**
@@ -155,6 +158,7 @@ public class OrderForm {
      *
      * @mbg.generated Fri May 17 12:02:31 CST 2024
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+08" )
     private Date updateTime;
 
     /**
