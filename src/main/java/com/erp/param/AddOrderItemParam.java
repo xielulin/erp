@@ -32,7 +32,7 @@ public class AddOrderItemParam {
     @NotNull(message = "商品总价不能为空")
     @Min(value = 1,message = "商品总价不能小于0")
     private BigDecimal totalPrice;
-
+    private double discount;
     private String remarks;
 
 }

@@ -42,6 +42,13 @@
         <table  tableName="order_items" domainObjectName="OrderItems" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table  tableName="order_form" domainObjectName="OrderForm" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="true" selectByExampleQueryId="false">
+            <columnOverride column="price" javaType="java.math.BigDecimal"/>
+            <columnOverride column="total_price" javaType="java.math.BigDecimal"/>
+            <columnOverride column="discount_price" javaType="java.math.BigDecimal"/>
+        </table>
         <table  tableName="sku" domainObjectName="Sku" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
@@ -56,6 +63,5 @@
                 enableSelectByExample="false" selectByExampleQueryId="false">
             <columnOverride column="price" javaType="java.math.BigDecimal"/>
         </table>-->
-
     </context>
 </generatorConfiguration>

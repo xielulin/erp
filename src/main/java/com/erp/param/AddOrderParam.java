@@ -36,6 +36,8 @@ public class AddOrderParam{
     @NotBlank(message = "客户联系方式不能为空")
     private String customerTel;
     private String remarks;
+    private BigDecimal discountPrice;
+    private double discount;
     @NotEmpty(message = "商品明细不能为空")
     private List<AddOrderItemParam> orderItemsList;
 }
