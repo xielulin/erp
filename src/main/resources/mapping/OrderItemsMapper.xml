@@ -323,7 +323,7 @@
     <if test="skuId != null and skuId !='' ">
       and  sku_id= #{skuId,jdbcType=INTEGER}
     </if>
-    GROUP BY date  order by date asc limit 30 ;
+    GROUP BY date  order by date desc limit 30 ;
   </select>
   <delete id="deleteByOrderId" parameterType="java.lang.Integer">
     <!--
